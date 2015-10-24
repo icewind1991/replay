@@ -4,13 +4,9 @@
 require 'vendor/autoload.php';
 
 $script = $argv[1];
+$input = $argv[2];
 
-$patcher = new \Icewind\Patcher\Patcher();
-$patcher->whiteListDirectory(__DIR__);
-$patcher->blackListDirectory(__DIR__ . '/src');
-$record = new \Icewind\Replay\Record\JsonRecord(__DIR__ . '/' . $argv[2]);
-$player = new \Icewind\Replay\Player\FunctionPlayer($record);
-$player->attach($patcher);
-$patcher->autoPatch();
+$replay = new \Icewind\Replay\Replay();
+$record = new \Icewind\Replay\Record\JsonRecord(__DIR__ . '/' . $input);
 
-require $script;
+$replay->play($script, $record);

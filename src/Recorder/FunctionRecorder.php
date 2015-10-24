@@ -10,7 +10,7 @@ namespace Icewind\Replay\Recorder;
 use Icewind\Replay\FunctionPatcher;
 use Icewind\Replay\Record\Track;
 
-class FunctionRecorder extends FunctionPatcher {
+class FunctionRecorder extends FunctionPatcher implements RecorderInterface {
 	/**
 	 * @param string $name
 	 * @param array $arguments

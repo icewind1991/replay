@@ -4,15 +4,10 @@
 require 'vendor/autoload.php';
 
 $script = $argv[1];
+$output = $argv[2];
 
-$patcher = new \Icewind\Patcher\Patcher();
-$patcher->whiteListDirectory(__DIR__);
-$patcher->blackListDirectory(__DIR__ . '/src');
-$record = new \Icewind\Replay\Record\JsonRecord();
-$recorder = new \Icewind\Replay\Recorder\FunctionRecorder($record);
-$recorder->attach($patcher);
-$patcher->autoPatch();
+$replay = new \Icewind\Replay\Replay();
 
-require $script;
+$record = $replay->record($script);
 
-$record->save(__DIR__ . '/' . $argv[2]);
+$record->save(__DIR__ . '/' . $output);

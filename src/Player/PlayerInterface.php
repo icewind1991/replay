@@ -5,10 +5,11 @@
  * http://opensource.org/licenses/MIT
  */
 
-namespace Icewind\Replay\Recorder;
+namespace Icewind\Replay\Player;
 
 use Icewind\Patcher\Patcher;
+use Icewind\Replay\Record\RecordInterface;
 
-interface RecorderInterface {
+interface PlayerInterface {
 	public function attach(Patcher $patcher);
 }

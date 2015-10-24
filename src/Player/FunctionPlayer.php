@@ -10,7 +10,7 @@ namespace Icewind\Replay\Player;
 use Icewind\Replay\Exceptions\UnexpectedCallException;
 use Icewind\Replay\FunctionPatcher;
 
-class FunctionPlayer extends FunctionPatcher {
+class FunctionPlayer extends FunctionPatcher implements PlayerInterface {
 	/**
 	 * @param string $name
 	 * @param array $arguments
