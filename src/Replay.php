@@ -24,6 +24,7 @@ class Replay {
 		$record = new JsonRecord();
 		$recorders = $this->getRecorders($record);
 		$this->runPatched($file, $recorders);
+		return $record;
 	}
 
 	/**
