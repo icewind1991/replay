@@ -44,7 +44,7 @@ Or
 require 'vendor/autoload.php';
 
 $replay = new \Icewind\Replay\Replay();
-$record = new \Icewind\Replay\Record\JsonRecord('exsting_recording.php');
+$record = new \Icewind\Replay\Record\JsonRecord('existing_recording.json');
 $record = $replay->play('script.php', $record);
 ```
 
