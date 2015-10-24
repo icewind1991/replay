@@ -1,0 +1,23 @@
+{
+    "name": "icewind/replay",
+    "description": "Record and replay php requests",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Robin Appelman",
+            "email": "icewind@owncloud.com"
+        }
+    ],
+    "require": {
+        "icewind/patcher": "^0.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.8.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Icewind\\Replay\\Tests\\": "tests/",
+            "Icewind\\Replay\\": "src/"
+        }
+    }
+}
