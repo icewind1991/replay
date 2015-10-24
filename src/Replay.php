@@ -23,18 +23,7 @@ class Replay {
 	public function record($file) {
 		$record = new JsonRecord();
 		$recorders = $this->getRecorders($record);
-		$patcher = $this->getPatcher();
-		foreach ($recorders as $recorder) {
-			$recorder->attach($patcher);
-		}
-		$patcher->autoPatch();
-
-		include $file;
-
-		$patcher->__destruct(); //ensure we clean up
-		$patcher = null;
-
-		return $record;
+		$this->runPatched($file, $recorders);
 	}
 
 	/**
@@ -43,16 +32,23 @@ class Replay {
 	 */
 	public function play($file, RecordInterface $record) {
 		$players = $this->getPlayers($record);
+		$this->runPatched($file, $players);
+	}
+
+	/**
+	 * @param $file
+	 * @param RecorderInterface[]|PlayerInterface[] $listeners
+	 */
+	private function runPatched($file, array $listeners) {
 		$patcher = $this->getPatcher();
-		foreach ($players as $player) {
-			$player->attach($patcher);
+		foreach ($listeners as $listener) {
+			$listener->attach($patcher);
 		}
 		$patcher->autoPatch();
 
 		include $file;
 
 		$patcher->__destruct(); //ensure we clean up
-		$patcher = null;
 	}
 
 	private function getPatcher() {
